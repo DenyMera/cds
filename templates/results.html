@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de Seguridad</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Reporte de Seguridad</h1>
+        
+    <!-- Bandit Section -->
+    <section>
+        <h2>Bandit (Análisis de Código)</h2>
+        {% if results.bandit.error %}
+            <div class="error">
+                <h3>❌ Error en Bandit</h3>
+                <p>{{ results.bandit.error }}</p>
+            </div>
+        {% elif results.bandit.results %}
+            <div class="results">
+                {% for issue in results.bandit.results %}
+                <div class="issue {{ issue.issue_severity.lower() }}">
+                    <h3>{{ issue.issue_text }}</h3>
+                    <p><strong>Archivo:</strong> {{ issue.filename }}:{{ issue.line_number }}</p>
+                    <p><strong>Severidad:</strong> {{ issue.issue_severity }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>✅ No se encontraron vulnerabilidades en el código</p>
+        {% endif %}
+    </section>
+
+    <!-- pip-audit Section -->
+    <section>
+        <h2>pip-audit (Dependencias)</h2>
+        {% if results.pip_audit.error %}
+            <div class="error">
+                <h3>❌ Error en pip-audit</h3>
+                <p>{{ results.pip_audit.error }}</p>
+            </div>
+        {% elif results.pip_audit.vulnerabilities %}
+            <div class="results">
+                {% for vuln in results.pip_audit.vulnerabilities %}
+                <div class="issue high">
+                    <h3>{{ vuln.name }}@{{ vuln.installed_version }}</h3>
+                    <p><strong>ID:</strong> {{ vuln.vuln_id }}</p>
+                    <p><strong>Descripción:</strong> {{ vuln.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>✅ Todas las dependencias son seguras</p>
+        {% endif %}
+    </section>
+        
+        <a href="/" class="back-btn">Volver</a>
+    </div>
+</body>
+</html>

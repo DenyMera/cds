@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Clientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Clientes</h1>
+        <form action="/add_client" method="post">
+            <input type="text" name="name" placeholder="Nombre" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <button type="submit">Guardar Cliente</button>
+        </form>
+        <a href="/security_scan" class="scan-btn">Ejecutar Análisis de Seguridad</a>
+    </div>
+</body>
+</html>

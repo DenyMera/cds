@@ -1,0 +1,22 @@
+targets:
+  - app.py
+  - dummy.py
+
+exclude_dirs:
+  - venv
+  - .venv
+  - env
+  - .env
+  - static
+  - templates
+
+output_format: json
+
+skips:
+  - B101
+  - B311
+ 
+
+skips:
+  - B311
+  - B108 

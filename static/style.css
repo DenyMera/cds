@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.container {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.scan-btn, .back-btn {
+    display: block;
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.issue {
+    padding: 10px;
+    margin: 10px 0;
+    border-left: 4px solid;
+}
+
+.low { border-color: #f39c12; }
+.medium { border-color: #e67e22; }
+.high { border-color: #e74c3c; }
