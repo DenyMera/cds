@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Registro de Clientes</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -7,12 +7,18 @@
 <body>
     <div class="container">
         <h1>Registro de Clientes</h1>
-        <form action="/add_client" method="post">
-            <input type="text" name="name" placeholder="Nombre" required>
-            <input type="email" name="email" placeholder="Email" required>
+        <form action="{{ url_for('add_client') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <label for="client-name">Nombre</label>
+            <input id="client-name" type="text" name="name" placeholder="Nombre" required>
+            <label for="client-email">Email</label>
+            <input id="client-email" type="email" name="email" placeholder="Email" required>
             <button type="submit">Guardar Cliente</button>
         </form>
-        <a href="/security_scan" class="scan-btn">Ejecutar Análisis de Seguridad</a>
+        <form action="{{ url_for('security_scan') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <button type="submit" class="scan-btn">Ejecutar Análisis de Seguridad</button>
+        </form>
     </div>
 </body>
 </html>
